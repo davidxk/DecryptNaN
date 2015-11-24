@@ -49,7 +49,7 @@ sub main {
     my @keys;
     
 	# first iteration: get 'N..u..l's, store indexes in @NulIndexes
-    for (my $i = 0; $i < @ciphers; $i++){
+    for (my $i = 0; $i < @ciphers-6; $i++){
         my $targetKey = $ciphers[$i] ^ ord 'N'; #78  means N
         if(verifyULposition($targetKey, $ciphers[$i+3], $ciphers[$i+6])){
             push @NulIndexes, $i;
@@ -79,9 +79,20 @@ sub main {
         return;
     }
     
-	#TODO: decrypt the cipher
-	#TODO: calculate ascii sum
-  
+	#print @keys;
+	# calculate ascii sum while decrypting the cipher 
+	my %chars;
+	my $sum=0;
+	for(my $i=0; $i<@ciphers; $i++){
+		my $plain = $ciphers[ $i ] ^ $keys[ $i % 3 ];
+		if( !exists $chars{ chr($plain) } ){
+			$sum+=$plain;
+			$chars{ chr($plain) }=1;
+			#print chr $plain, " $plain\n";
+		}
+		#print chr $plain;
+	}
+	print "$sum\n";
 }
 
 main;
