@@ -12,7 +12,7 @@ sub verifyULposition{
     return 0; 
 }
 
-sub verifyNaturalWord{
+sub verifyWordNatural{
     my $position = shift;
     my @ciphers = @_;
     my @keys;
@@ -61,7 +61,7 @@ sub main {
         return;
     }
 	elsif(@NulIndexes == 1){
-        @keys = verifyNaturalWord($NulIndexes[0], @ciphers);
+        @keys = verifyWordNatural($NulIndexes[0], @ciphers);
     }
     
 
@@ -69,25 +69,10 @@ sub main {
 
 
     for(my $i = 0; $i < @NulIndexes; $i++){
-        if($i == 0){
-            if($NulIndexes[$i+1]-$NulIndexes[$i] >= 7){
-                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
+            if($i==$#NulIndexes || $NulIndexes[$i+1]-$NulIndexes[$i] >= 7){
+                @keys = verifyWordNatural($NulIndexes[$i], @ciphers);
                 last if(@keys);
             }
-        }elsif($i == scalar (@NulIndexes) -1 ){
-            if($NulIndexes[$i]-$NulIndexes[$i-1] >= 7){
-                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
-                last if(@keys);
-            }else{
-                print "there is not Natural word found!";
-                return;
-            }
-        }else{
-            if($NulIndexes[$i+1]-$NulIndexes[$i] >= 7 && $NulIndexes[$i]-$NulIndexes[$i-1] >= 7){
-                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
-                last if(@keys);
-            }
-        }
     }
     if(!@keys){
         print "there is not Natural word found!";
