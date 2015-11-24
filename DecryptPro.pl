@@ -5,11 +5,10 @@ use warnings;
 
 sub verifyULposition{
     my $key = shift;
-    my $characterU = shift;
-    my $characterL = shift;
+    my $charU = shift;
+    my $charL = shift;
     
-    return 1 if(($characterU ^ $key) == ord("u") && ($characterL ^ $key) == ord("l") );
-    
+    return 1 if( ($charU ^ $key) == ord 'u' && ($charL ^ $key) == ord 'l' );
     return 0; 
 }
 
@@ -18,10 +17,12 @@ sub verifyNaturalWord{
     my @ciphers = @_;
     my @keys;
 
-    my $key2 = $ciphers[$position+1] ^ 97; # 97 means 'a'
-    my $key3 = $ciphers[$position+2] ^ 116; # 116 means 't'
-    if(($ciphers[$position+4] ^ $key2) == ord("r") && ($ciphers[$position+5] ^ $key3) == ord("a") ){
-        my $key1 = $ciphers[$position] ^ 78;  # 78 means 'N'
+    my $key2 = $ciphers[$position+1] ^ ord 'a'; # 97 means 'a'
+    my $key3 = $ciphers[$position+2] ^ ord 't'; # 116 means 't'
+    if(($ciphers[$position+4] ^ $key2) == ord 'r' &&
+	   	($ciphers[$position+5] ^ $key3) == ord 'a' ){
+
+        my $key1 = $ciphers[$position] ^ ord 'N';  # 78 means 'N'
         if($position % 3 == 0){
             @keys = ($key1, $key2, $key3);
         }elsif($position % 3 == 1){
@@ -31,66 +32,70 @@ sub verifyNaturalWord{
         }
         return @keys;
     }
-    
     return @keys;
-    
 }
 
 
 
 
+
 sub main {
+	# get input cipher
     my $input = <>;
     my @ciphers = split /,/, $input;
     
-    my @naturalArrayPositions;
+	# declare variables used
+    my @NulIndexes;
     my @keys;
     
+	# first iteration: get 'N..u..l's, store indexes in @NulIndexes
     for (my $i = 0; $i < @ciphers; $i++){
-        my $targetKey = $ciphers[$i] ^ 78; #78  means N
+        my $targetKey = $ciphers[$i] ^ ord 'N'; #78  means N
         if(verifyULposition($targetKey, $ciphers[$i+3], $ciphers[$i+6])){
-            push @naturalArrayPositions, $i;
+            push @NulIndexes, $i;
         }
     }
-    
-    if(!@naturalArrayPositions){
+	# handling exception scenarios
+    if(!@NulIndexes){
         print "there is not Natural word found!";
         return;
     }
-    
-    if(@naturalArrayPositions == 1){
-        @keys = verifyNaturalWord($naturalArrayPositions[0], @ciphers);
+	elsif(@NulIndexes == 1){
+        @keys = verifyNaturalWord($NulIndexes[0], @ciphers);
     }
     
-    for(my $i = 0; $i < @naturalArrayPositions; $i++){
+
+
+
+
+    for(my $i = 0; $i < @NulIndexes; $i++){
         if($i == 0){
-            if($naturalArrayPositions[$i+1]-$naturalArrayPositions[$i] >= 7){
-                @keys = verifyNaturalWord($naturalArrayPositions[$i], @ciphers);
+            if($NulIndexes[$i+1]-$NulIndexes[$i] >= 7){
+                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
                 last if(@keys);
             }
-        }elsif($i == scalar (@naturalArrayPositions) -1 ){
-            if($naturalArrayPositions[$i]-$naturalArrayPositions[$i-1] >= 7){
-                @keys = verifyNaturalWord($naturalArrayPositions[$i], @ciphers);
+        }elsif($i == scalar (@NulIndexes) -1 ){
+            if($NulIndexes[$i]-$NulIndexes[$i-1] >= 7){
+                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
                 last if(@keys);
             }else{
                 print "there is not Natural word found!";
                 return;
             }
         }else{
-            if($naturalArrayPositions[$i+1]-$naturalArrayPositions[$i] >= 7 && $naturalArrayPositions[$i]-$naturalArrayPositions[$i-1] >= 7){
-                @keys = verifyNaturalWord($naturalArrayPositions[$i], @ciphers);
+            if($NulIndexes[$i+1]-$NulIndexes[$i] >= 7 && $NulIndexes[$i]-$NulIndexes[$i-1] >= 7){
+                @keys = verifyNaturalWord($NulIndexes[$i], @ciphers);
                 last if(@keys);
-                
             }
         }
-        
     }
-    
     if(!@keys){
         print "there is not Natural word found!";
         return;
     }
     
+	#TODO: decrypt the cipher
+	#TODO: calculate ascii sum
   
 }
 
