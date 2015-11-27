@@ -2,8 +2,6 @@
 
 int main()
 {
-	//EncryptTest et;
-	//et.run();
 	string plain;
 	getline(cin, plain);
 	CipherGen cg;

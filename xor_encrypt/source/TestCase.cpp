@@ -5,7 +5,9 @@ TestCase::TestCase(string pl, string ps, string ci):
 
 void TestCase::print()
 {
-	cout<<plain<<endl<<psswd<<endl;
+	cout<<"Plain: "<<endl<<plain<<endl
+		<<"Psswd: "<<endl<<psswd<<endl
+		<<"Ciphr: ";
 	printCipher();
 }
 

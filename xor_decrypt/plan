@@ -3,5 +3,5 @@ Second, we consider fixing the 4th block. 	... done
 Third, we test the code written so far. 	... done
 Fourth, we decrypt the cipher and print it.	... done
 Fifth, we verify the result. 			... done
-Sixth, we fix the known problem. 		... no problem	
+Sixth, we fix the known problems. 		... no problem	
 

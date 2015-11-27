@@ -90,9 +90,9 @@ sub main {
 			$chars{ chr($plain) }=1;
 			#print chr $plain, " $plain\n";
 		}
-		#print chr $plain;
+		print chr $plain;
 	}
-	print "$sum\n";
+	#print "$sum\n";
 }
 
 main;

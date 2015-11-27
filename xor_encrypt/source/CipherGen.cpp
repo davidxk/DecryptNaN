@@ -1,9 +1,10 @@
 #include "CipherGen.h"
 #include <cstdlib>
+#include <ctime>
 
 CipherGen::CipherGen()
 {
-	//srand(time(0));
+	srand(time(0));
 }
 
 TestCase CipherGen::genCase(string plain)
