@@ -7,9 +7,9 @@ CipherGen::CipherGen()
 	srand(time(0));
 }
 
-TestCase CipherGen::genCase(string plain)
+TestCase CipherGen::genCase(string plain, string psswd)
 {
-	string psswd=genPsswd();
+	if( psswd.empty() ) psswd=genPsswd();
 	string cipher=xe.encrypt(plain, psswd);
 	return TestCase(plain, psswd, cipher);
 }

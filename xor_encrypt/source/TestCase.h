@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+//A TestCase is a data structure that models an actual test case
+//It knows how to print itself
 class TestCase
 {
 public:

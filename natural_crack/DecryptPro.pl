@@ -42,6 +42,7 @@ sub verifyWordNatural{
 sub main {
 	# get input cipher
     my $input = <>;
+	chomp($input);
     my @ciphers = split /,/, $input;
     
 	# declare variables used
@@ -56,8 +57,8 @@ sub main {
         }
     }
 	# handling exception scenarios
-    if(!@NulIndexes){
-        print "there is not Natural word found!";
+    if(!@NulIndexes){;
+        print "there is not Natural word found!\n";
         return;
     }
 	elsif(@NulIndexes == 1){
@@ -75,7 +76,7 @@ sub main {
             }
     }
     if(!@keys){
-        print "there is not Natural word found!";
+        print "there is not Natural word found!\n";
         return;
     }
     
@@ -92,6 +93,7 @@ sub main {
 		}
 		print chr $plain;
 	}
+	print "\n";
 	#print "$sum\n";
 }
 

@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# Temporary Makefile 
+*.d
+
+# Mac File System
+.DS_Store

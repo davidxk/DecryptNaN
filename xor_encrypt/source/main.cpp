@@ -6,6 +6,6 @@ int main()
 	getline(cin, plain);
 	CipherGen cg;
 	TestCase tc=cg.genCase(plain);
-	tc.printCipher();
+	tc.print();
 	return 0;
 }

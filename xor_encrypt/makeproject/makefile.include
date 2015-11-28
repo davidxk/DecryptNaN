@@ -1,5 +1,5 @@
 %.d: %.cpp
-	# Start making dot d files
+	@# Start making dot d files
 	@set -e; rm -f $@; \
 	$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$; \
 	sed 's#\($*\)\.o[ :]*#\1.o $@ : #g' < $@.$$$$ > $@; \
