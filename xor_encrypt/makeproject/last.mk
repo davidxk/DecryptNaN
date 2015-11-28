@@ -12,7 +12,7 @@ $(exec): $(objects)
 
 ## Includes
 include makefile.include 
-include $(sources:.cpp=.d)	# include the dot d files
+#include $(sources:.cpp=.d)	# include the dot d files
 
 ##Clean
 .PHONY: clean

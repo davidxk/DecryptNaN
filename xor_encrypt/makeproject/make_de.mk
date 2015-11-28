@@ -3,9 +3,9 @@ proj_path=$(shell pwd)/..
 include source.mk
 
 ## Add main Entrance
-main=make_sample.cpp 
+main=decrypt.cpp 
 sources+=$(main)
-exec=make_sample
+exec=decrypt
 
 ## Always include last.mk
 include last.mk

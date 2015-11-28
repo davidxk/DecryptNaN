@@ -7,3 +7,11 @@ string XorEncryptor::encrypt(string plain, string psswd)
 		cipher += plain[i] ^ psswd[ i%psswd.size() ];
 	return cipher;
 }
+
+string XorEncryptor::decrypt(vector<int> ciphr, string psswd)
+{
+	string plain;
+	for(int i=0; i<ciphr.size(); i++)
+		plain += (char)ciphr[i] ^ psswd[ i%psswd.size() ];
+	return plain;
+}

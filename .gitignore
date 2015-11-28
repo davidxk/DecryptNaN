@@ -32,3 +32,7 @@
 
 # Mac File System
 .DS_Store
+
+# Vim Temporary
+*.swp
+.*.swp
