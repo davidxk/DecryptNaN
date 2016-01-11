@@ -7,5 +7,7 @@ echo N..u..t first algorithm:
 time ./nul_speed_first.sh
 echo KMP implementation: 
 time ./kmp_speed_first.sh
-echo KMP implementation in C++ for comparison: 
+echo KMP implementation in Python: 
+time ./py3_speed_first.sh
+echo KMP implementation in C++: 
 time ./cxx_speed_first.sh

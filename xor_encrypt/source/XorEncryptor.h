@@ -10,7 +10,8 @@ using namespace std;
 class XorEncryptor
 {
 public:
-	string encrypt(string plain, string psswd);
-	string decrypt(vector<int> ciphr, string psswd);
+	string encrypt(const string& plain, const string& psswd);
+	string intVec2Str(const vector<int>& ciphr);
+	string decrypt(const vector<int>& ciphr, const string& psswd);
 };
 #endif
