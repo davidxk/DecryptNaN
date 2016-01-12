@@ -9,7 +9,7 @@ rm -f $TEST_RESULT
 for each in $(ls $LIBS_DIR); do 
 	sample_each=$SAMP_DIR/sample_$each
 	cipher_each=$CIPH_DIR/cipher_$each
-	perl $DECRYPT_ROOT/DecryptPro.pl $cipher_each > work
+	perl $DECRYPT_ROOT/DecryptNul.pl $cipher_each > work
 	sed -n "s/Plain: //p" $sample_each > answ
 	difference=$( diff answ work ) 
 	if [[ -n $difference ]]; then 

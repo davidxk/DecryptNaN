@@ -6,5 +6,5 @@ TEST_RESULT=$OUT_DIR/test_result.diff
 
 for each in $(ls $LIBS_DIR); do 
 	cipher_each=$CIPH_DIR/cipher_$each
-	perl $DECRYPT_ROOT/DecryptPro.pl $cipher_each > /dev/null
+	perl $DECRYPT_ROOT/DecryptNul.pl $cipher_each > /dev/null
 done
